@@ -22,7 +22,7 @@ output "hostname" {
 }
 
 variable gce_ssh_user0 { default = "capstone" }
-variable gce_ssh_pub_key_file0 { default = "~/.ssh/id_rsa.pub" }
+variable gce_ssh_pub_key_file0 { default = "id_rsa.pub" }
 
 resource "google_compute_instance" "vm_instance" {
   name         = "minikube-vm"
