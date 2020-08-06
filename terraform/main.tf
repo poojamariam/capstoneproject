@@ -1,16 +1,16 @@
 terraform {
   backend "gcs" {
-    bucket = "capstone-test0"
+    bucket = "capstonepj_bucket"
     prefix = "minikube"
-    credentials = "~/Downloads/current-terraform-backend-project.json"
+    credentials = "admin-project-284718-d558eaed25f4.json"
   }
 }
 
 provider "google" {
-  credentials = file("~/Downloads/current_gcp_project.json")
-  project = "genuine-ember-284308"
+  credentials = file("gcp_capstone_project.json")
+  project = "rock-nebula-260922"
   region  = "us-central1"
-  zone    = "us-central1-c"
+  zone    = "us-central1-a"
 }
 
 // A variable for extracting the external ip of the instance
