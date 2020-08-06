@@ -1,0 +1,19 @@
+FROM jenkins/jenkins:2.235.3
+
+ARG JENKINS_HOME=/var/jenkins_home
+ARG user=jenkins
+ARG group=jenkins
+
+USER root
+
+COPY rootCA.crt /usr/local/share/ca-certificates/rootCA.crt
+RUN update-ca-certificates
+
+USER ${user}
+
+COPY --chown=${user}:${group} id_rsa $JENKINS_HOME/.ssh/id_rsa
+COPY --chown=${user}:${group} id_rsa.pub $JENKINS_HOME/.ssh/id_rsa.pub
+RUN chmod 0700 $JENKINS_HOME/.ssh \
+    && chmod 0600 $JENKINS_HOME/.ssh/id_rsa \
+    && chmod 0644 $JENKINS_HOME/.ssh/id_rsa.pub
+    

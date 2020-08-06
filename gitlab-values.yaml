@@ -1,0 +1,46 @@
+global:
+  shell:
+    port: 2222
+    hostKeys:
+      secret: gitlab-gitlab-shell-host-keys 
+  edition: ce
+  ingress:
+    configureCertmanager: false
+    class: "nginx"
+    tls:
+      enabled: true
+      secretName: tls-cert
+  hosts:
+    domain: capstone.com
+#    externalIP: 34.67.106.57
+  rails:
+    bootsnap:
+      enabled: false
+  initialRootPassword:
+    secret: gitlab-gitlab-initial-root-password
+    key: password
+  certificates:
+    customCAs:
+      - secret: custom-ca
+certmanager:
+  install: false
+nginx-ingress:
+  enabled: false
+prometheus:
+  install: false
+gitlab-runner:
+  install: false
+gitlab:
+  webservice:
+    minReplicas: 1
+    maxReplicas: 1
+  sidekiq:
+    minReplicas: 1
+    maxReplicas: 1
+  gitlab-shell:
+    minReplicas: 1
+    maxReplicas: 1
+registry:
+  hpa:
+    minReplicas: 1
+    maxReplicas: 1

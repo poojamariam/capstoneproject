@@ -1,0 +1,22 @@
+master:
+  image: "capstoneproject/jenkins"
+  tag: "2.235.3"
+  enableXmlConfig: true
+  serviceType: NodePort
+  adminPassword: "oKNItqC34ndZYvkOYXybGcMOmab7tc2b"
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    hostName: jenkins.capstone.com
+    tls:
+    - secretName: tls-cert
+      hosts:
+      - jenkins.capstone.com
+agent:
+  image: "capstoneproject/inbound-agent"
+  tag: "4.3-4"
+  volumes:
+  - type: HostPath
+    hostPath: /var/run/docker.sock
+    mountPath: /var/run/docker.sock
